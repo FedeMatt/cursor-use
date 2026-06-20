@@ -16,9 +16,15 @@ uv run expenses-tracker/scripts/clean_markdown.py draft
 # Agent: edit .working/statement.cleaned.md — see skills/clean/ and skills/report/
 uv run expenses-tracker/scripts/clean_markdown.py push
 uv run expenses-tracker/scripts/generate_report.py --force
+uv run expenses-tracker/scripts/send_report.py   # optional — if REPORT_EMAIL_TO is set
 ```
 
 Do **not** open a pull request.
+
+## Email (optional)
+
+- **Inbound PDF** — forward statement to a Cloudflare Email Worker → R2. See [skills/email/SKILL.md](../email/SKILL.md). Email the PDF **before** running this pipeline.
+- **Outbound report** — `send_report.py` emails the HTML report after generation (R2 upload still happens).
 
 ## Agent responsibilities
 
@@ -40,8 +46,9 @@ You are the monthly expenses-tracker agent.
    - Add insight_note (1–2 sentences on spending patterns)
 5. uv run expenses-tracker/scripts/clean_markdown.py push
 6. uv run expenses-tracker/scripts/generate_report.py --force
-7. Summarize: total due, key stats, top category, report R2 key
-8. Do NOT open a pull request
+7. uv run expenses-tracker/scripts/send_report.py   # if email configured
+8. Summarize: total due, key stats, top category, report R2 key
+9. Do NOT open a pull request
 ```
 
 ## Scheduling
@@ -59,3 +66,4 @@ The API has no native schedule; pair it with `.github/workflows/monthly-expenses
 | Missing stats section | skills/report/SKILL.md |
 | Wrong categories | skills/config/SKILL.md |
 | API / monthly trigger | skills/automation-api/SKILL.md |
+| Email PDF in / report out | skills/email/SKILL.md |

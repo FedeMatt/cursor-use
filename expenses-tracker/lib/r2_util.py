@@ -65,6 +65,10 @@ def read_object(client, bucket: str, key: str) -> str:
     return client.get_object(Bucket=bucket, Key=key)["Body"].read().decode()
 
 
+def read_object_bytes(client, bucket: str, key: str) -> bytes:
+    return client.get_object(Bucket=bucket, Key=key)["Body"].read()
+
+
 def write_object(client, bucket: str, key: str, body: str, content_type: str) -> None:
     client.put_object(
         Bucket=bucket,

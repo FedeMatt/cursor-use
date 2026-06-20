@@ -16,6 +16,7 @@ def monthly_prompt() -> str:
         "You are the monthly expenses-tracker cloud agent.\n\n"
         "Read and execute expenses-tracker/skills/pipeline/SKILL.md in full "
         "(including clean and report skills it references).\n\n"
+        "If REPORT_EMAIL_TO is set, run send_report.py after generate_report.py.\n\n"
         "R2 credentials are in the cloud environment secrets, not in git. "
         "Do NOT open a pull request."
     )

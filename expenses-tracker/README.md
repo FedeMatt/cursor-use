@@ -24,7 +24,12 @@ expenses-tracker/
 2. `uv run expenses-tracker/scripts/process_bills.py`
 3. Clean markdown — [skills/clean/SKILL.md](skills/clean/SKILL.md) + [skills/report/SKILL.md](skills/report/SKILL.md)
 4. `uv run expenses-tracker/scripts/generate_report.py --force`
-5. No PR — outputs go to R2 only.
+5. `uv run expenses-tracker/scripts/send_report.py` — optional, emails HTML report
+6. No PR — outputs go to R2 (and inbox if email configured).
+
+## Email (optional)
+
+Skip manual PDF upload: deploy the [Email Worker](workers/email-ingest/) and forward your bank statement to it → R2. Receive the report by email via SMTP. See [skills/email/SKILL.md](skills/email/SKILL.md).
 
 ## Monthly automation
 
@@ -55,6 +60,7 @@ Full details: [skills/automation-api/SKILL.md](skills/automation-api/SKILL.md).
 |-------|----------------|
 | [skills/pipeline/SKILL.md](skills/pipeline/SKILL.md) | Full automation workflow |
 | [skills/automation-api/SKILL.md](skills/automation-api/SKILL.md) | API setup, GitHub Actions, secrets |
+| [skills/email/SKILL.md](skills/email/SKILL.md) | Email PDF → R2, report → inbox |
 | [skills/clean/SKILL.md](skills/clean/SKILL.md) | Cleaning OCR markdown |
 | [skills/report/SKILL.md](skills/report/SKILL.md) | Statistics + HTML report specs |
 | [skills/config/SKILL.md](skills/config/SKILL.md) | config.toml customization |
@@ -72,3 +78,5 @@ Full details: [skills/automation-api/SKILL.md](skills/automation-api/SKILL.md).
 
 - `CURSOR_API_KEY` — [Dashboard → Integrations](https://cursor.com/dashboard/integrations)
 - `EXPENSES_AGENT_ID` — `bc-…` from `setup_agent.py`
+
+**Report email (optional):** `REPORT_EMAIL_TO`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD` — see [skills/email/SKILL.md](skills/email/SKILL.md).
