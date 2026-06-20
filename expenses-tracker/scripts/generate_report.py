@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import sys
-from datetime import datetime, timezone
 
 import _bootstrap  # noqa: F401
 from config import Config, load_config
@@ -18,6 +17,7 @@ from r2_util import (
     write_object,
 )
 from report_html import build_html
+from report_key import report_key
 from statement_parse import parse_meta
 from statistics import resolve_statistics
 from transactions import parse_transactions
@@ -40,11 +40,6 @@ def _current_md_key(client, bucket: str, cfg: Config) -> str | None:
     return None
 
 
-def _report_key(cfg: Config) -> str:
-    when = datetime.now(timezone.utc)
-    return f"{cfg.reports_prefix.rstrip('/')}/{when:%Y-%m}.html"
-
-
 def generate_report(
     cfg: Config | None = None, *, dry_run: bool = False, force: bool = False
 ) -> str | None:
@@ -55,11 +50,12 @@ def generate_report(
     if not md_key:
         return None
 
-    report_key = _report_key(cfg)
+    report_key_path = report_key(cfg)
     if not force and any(
-        k == report_key for k, _ in list_objects(client, bucket, cfg.reports_prefix)
+        k == report_key_path
+        for k, _ in list_objects(client, bucket, cfg.reports_prefix)
     ):
-        return report_key
+        return report_key_path
 
     md = read_object(client, bucket, md_key)
     df = parse_transactions(md, cfg)
@@ -68,11 +64,11 @@ def generate_report(
     html_doc = build_html(df, meta, stats, md_key, cfg)
 
     if dry_run:
-        print(f"would write {report_key} ({len(df)} rows)")
-        return report_key
+        print(f"would write {report_key_path} ({len(df)} rows)")
+        return report_key_path
 
-    write_object(client, bucket, report_key, html_doc, "text/html; charset=utf-8")
-    return report_key
+    write_object(client, bucket, report_key_path, html_doc, "text/html; charset=utf-8")
+    return report_key_path
 
 
 def _self_check() -> None:
