@@ -1,0 +1,20 @@
+# Copy bucket_name / R2_PREFIX / ALLOWED_FROM for your account, then:
+#   npm install && npx wrangler deploy
+#
+# In Cloudflare dashboard → Email Routing → Routing rules:
+#   bills@yourdomain.com → Send to Worker → expenses-email-ingest
+
+name = "expenses-email-ingest"
+main = "src/index.js"
+compatibility_date = "2024-08-01"
+
+[[r2_buckets]]
+binding = "BILLS"
+bucket_name = "cursor-use-expenses-tracker"
+
+[vars]
+R2_PREFIX = "credit-card-bills/"
+# Comma-separated envelope senders to accept (empty = accept all)
+ALLOWED_FROM = ""
+
+workers_dev = false

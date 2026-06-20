@@ -6,6 +6,7 @@
 │   ├── scripts
 │   ├── skills
 │   ├── templates
+│   ├── workers
 │   ├── config.toml
 │   └── README.md
 ├── AGENTS.md
@@ -15,4 +16,4 @@
 ├── README.md
 └── TREE.md
 
-8 directories, 8 files
+9 directories, 8 files

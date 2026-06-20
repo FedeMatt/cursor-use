@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+expenses-tracker/lib/__pycache__/
 *.py[codz]
 *$py.class
 
@@ -87,6 +88,7 @@ uv.lock
 # expenses-tracker working files (raw/cleaned markdown drafts)
 expenses-tracker/.working/
 expenses-tracker/.agent-id
+expenses-tracker/workers/email-ingest/node_modules/
 
 # ponytail: root lib/ ignores Python packaging; keep expenses-tracker/lib tracked
 !expenses-tracker/lib/
