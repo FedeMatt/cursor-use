@@ -1,0 +1,28 @@
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.22.1
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.13
+    hooks:
+      - id: ruff-check
+        args: [ "--fix" ]
+      - id: ruff-format
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+
+  - repo: local
+    hooks:
+    - id: generate-tree
+      name: update directory tree
+      entry: bash -c "tree --dirsfirst -L 2 -I '.git|uv.lock|*.egg-info|node_modules|package-lock.json' > TREE.md"
+      language: system
+      pass_filenames: false
+
+ 
