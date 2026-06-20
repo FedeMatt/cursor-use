@@ -84,6 +84,14 @@ ipython_config.py
 # UV
 uv.lock
 
+# expenses-tracker working files (raw/cleaned markdown drafts)
+expenses-tracker/.working/
+expenses-tracker/.agent-id
+
+# ponytail: root lib/ ignores Python packaging; keep expenses-tracker/lib tracked
+!expenses-tracker/lib/
+!expenses-tracker/lib/**
+
 # pdm
 .pdm-python
 .pdm-build/

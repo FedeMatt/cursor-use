@@ -1,0 +1,21 @@
+name: Monthly expenses tracker
+
+on:
+  schedule:
+    # 09:00 UTC on the 1st of each month
+    - cron: "0 9 1 * *"
+  workflow_dispatch: {}
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Trigger Cursor cloud agent
+        env:
+          CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
+          EXPENSES_AGENT_ID: ${{ secrets.EXPENSES_AGENT_ID }}
+        run: uv run expenses-tracker/scripts/trigger_monthly.py

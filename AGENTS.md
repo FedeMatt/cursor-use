@@ -28,3 +28,16 @@ Rules:
 - Mark intentional simplifications with a `ponytail:` comment. If the shortcut has a known ceiling (global lock, O(n²) scan, naive heuristic), the comment names the ceiling and the upgrade path.
 
 Not lazy about: input validation at trust boundaries, error handling that prevents data loss, security, accessibility, the calibration real hardware needs (the platform is never the spec ideal, a clock drifts, a sensor reads off), anything explicitly requested. Lazy code without its check is unfinished: non-trivial logic leaves ONE runnable check behind, the smallest thing that fails if the logic breaks (an assert-based demo/self-check or one small test file; no frameworks, no fixtures). Trivial one-liners need no test.
+
+## Cursor Cloud specific instructions
+
+### expenses-tracker (monthly automation)
+
+Read **`expenses-tracker/skills/pipeline/SKILL.md`** for the full workflow.
+
+Agent must also follow:
+
+- **`expenses-tracker/skills/clean/SKILL.md`** — clean OCR markdown
+- **`expenses-tracker/skills/report/SKILL.md`** — verify statistics + `insight_note`
+
+Scripts live under `expenses-tracker/scripts/`. Config: `expenses-tracker/config.toml`.

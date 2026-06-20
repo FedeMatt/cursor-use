@@ -1,5 +1,13 @@
 .
 ├── expenses-tracker
+│   ├── __pycache__
+│   ├── assets
+│   ├── lib
+│   ├── scripts
+│   ├── skills
+│   ├── templates
+│   ├── config.toml
+│   └── README.md
 ├── AGENTS.md
 ├── LICENSE
 ├── main.py
@@ -7,4 +15,4 @@
 ├── README.md
 └── TREE.md
 
-2 directories, 6 files
+8 directories, 8 files

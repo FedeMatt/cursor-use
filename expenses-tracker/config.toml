@@ -1,0 +1,55 @@
+# Expenses-tracker configuration — copy and edit for your R2 bucket and merchants.
+# Override path: EXPENSES_CONFIG=/path/to/config.toml
+
+[paths]
+source_pdfs = "credit-card-bills/"
+markdown = "monthly-expense/"
+reports = "monthly-reports/"
+
+[report]
+title = "Monthly Expense Report"
+eyebrow = "Personal Finance — Statement"
+currency_symbol = "$"
+currency_code = "SGD"
+default_category = "Etc."
+
+[parse]
+# Regex patterns for markdown table rows and statement metadata
+date = "^\\s*\\d{1,2}\\s*\\w{3}"
+amount = "^[\\d,]+\\.\\d{2}(?:CR)?$"
+credit_suffix = "CR"
+total_due = "Total Due\\s+([\\d,]+\\.\\d{2})"
+period = "From\\s+(\\d{1,2}\\s+\\w{3}\\s+\\d{4})\\s+to\\s+(\\d{1,2}\\s+\\w{3}\\s+\\d{4})"
+
+[[categories]]
+name = "Groceries"
+color = "#E8B49C"
+keywords = ["fairprice", "cold storage", "ntuc", "supermarket", "grocery", "kopitiam"]
+
+[[categories]]
+name = "Eating & Coffee"
+color = "#9C968D"
+keywords = [
+    "salad stop", "coffee", "food panda", "foodpanda", "fp*",
+    "ippudo", "pizza", "guzman", "patisserie", "woowfles",
+    "bengawan", "boostjuice", "alchemist", "santis", "hopscotch",
+    "epidor", "bakery", "restaurant",
+]
+
+[[categories]]
+name = "Shopping"
+color = "#C97B63"
+keywords = ["lazada", "taobao", "lotte duty", "icon", "duty free"]
+
+[[categories]]
+name = "Transport"
+color = "#7FA882"
+keywords = ["bus/mrt", "grab"]
+
+[[categories]]
+name = "Subscriptions & Bills"
+color = "#DA7756"
+keywords = [
+    "spotify", "apple.com", "singtel", "omise", "wewasg",
+    "ijooz", "wooza", "dcc fee", "dccfee",
+]
