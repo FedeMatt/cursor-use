@@ -1,2 +1,2 @@
 # cursor-use
-Agents running on Cursor to handle personal matters, scaling coding assistants to a personal assistants
+Agents running on Cursor to handle personal matters. We want to scale coding assistants to become personal assistants.
