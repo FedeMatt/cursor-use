@@ -84,6 +84,8 @@ SMTP_PASSWORD=xxxx xxxx xxxx xxxx   # 16-char app password (spaces optional)
 ```bash
 uv run expenses-tracker/scripts/send_report.py --dry-run
 uv run expenses-tracker/scripts/send_report.py
+# or pin the exact key printed by generate_report.py:
+uv run expenses-tracker/scripts/send_report.py --report-key monthly-reports/2026-06.html
 ```
 
 | Variable | Example |
