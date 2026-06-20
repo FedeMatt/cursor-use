@@ -4,7 +4,16 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "boto3>=1.43.34",
+    "pandas>=3.0.3",
+    "pymupdf>=1.27.2.3",
+    "pymupdf4llm>=1.27.2.3",
+]
+
+[tool.uv]
+# ponytail: pymupdf-layout pins onnxruntime 1.27 which drops macOS x86_64 wheels; cloud agents are Linux.
+override-dependencies = ["onnxruntime==1.23.2"]
 
 [dependency-groups]
 dev = [
