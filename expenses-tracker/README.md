@@ -106,4 +106,4 @@ expenses-tracker/
 
 **Report email** (optional): `REPORT_EMAIL_TO` · `SMTP_*` — see [skills/email/SKILL.md](skills/email/SKILL.md)
 
-Copy placeholders from [`env.example`](../env.example).
+Copy placeholders from [`env.example`](../.env.example).
